@@ -175,6 +175,12 @@ Software...
 
 - GitHub: [@BedrockLauncher](https://github.com/Round-Studio/)
 
+## 👏 鸣谢
+
+感谢以下对我们核心的支持！
+
+- 感谢 [McAppx 站点](https://www.mcappx.com) 站长提供的基岩版列表源  
+
 ---
 
 ✅ **现在就开始构建你自己的 Minecraft 启动器吧！**
