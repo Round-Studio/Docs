@@ -65,10 +65,19 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'right',
+            position: 'left',
             label: '文档',
+            to: '/docs/category/文档'
+          },
+          {
+            to: '/docs/文档/RMCL/用户文档/00开始使用%20RMCL',
+            label: 'RMCL 使用文档',
+            position: 'right',
+          },
+          {
+            href: 'https://roundstudio.top',
+            label: '官网',
+            position: 'right',
           },
           {
             href: 'https://github.com/Round-Studio',
@@ -81,8 +90,16 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: '文档',
+            title: '快捷链接',
             items: [
+              {
+                label: 'OverrideLauncher.Core',
+                to: '/docs/%E6%96%87%E6%A1%A3/OverrideLauncher.Core/%E4%BB%8B%E7%BB%8D',
+              },
+              {
+                label: 'BedrockLauncher.Core',
+                to: '/docs/文档/BedrockLauncher.Core/Introduct',
+              },
               {
                 label: '关于我们',
                 to: '/docs/关于我们',
@@ -96,14 +113,26 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/Round-Studio',
               },
+              {
+                label: '官网',
+                href: 'https://roundstudio.top',
+              }
             ],
           },
           {
-            title: '关注我们',
+            title: '联系我们',
             items: [
               {
-                label: 'QQ 群',
+                label: '审核 & 交流群',
                 href: 'https://qm.qq.com/q/bZOmvOGHf2',
+              },
+              {
+                label: 'RMCL 反馈交流 ① 群',
+                href: 'https://qm.qq.com/q/tmjXK2qqY0',
+              },
+              {
+                label: '加入我们',
+                to: '/docs/加入我们',
               },
             ],
           },

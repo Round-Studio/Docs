@@ -1,23 +1,127 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+  color: #fff;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+[data-theme='dark'] .heroBanner {
+  background: linear-gradient(135deg, #1a3a4a 0%, #2d2345 100%);
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.heroLogo {
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.heroLogo:hover {
+  transform: scale(1.1);
+}
+
+.heroTitle {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.highlight {
+  color: #61dafb;
+  text-shadow: 0 0 8px rgba(97, 218, 251, 0.3);
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.getStarted {
+  background-color: #61dafb;
+  color: #20232a;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.getStarted:hover {
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.secondaryButton {
+  color: #61dafb;
+  border-color: #61dafb;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(97, 218, 251, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.heroWave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  color: var(--ifm-hero-background-color);
+}
+
+.callout {
+  padding: 4rem 0;
+  text-align: center;
+  background-color: var(--ifm-background-surface-color);
+}
+
+.calloutCard {
+  background: var(--ifm-card-background-color);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: var(--ifm-card-shadow);
+  margin-top: -3rem;
+  position: relative;
+  z-index: 1;
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='dark'] .calloutCard {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+  }
 }

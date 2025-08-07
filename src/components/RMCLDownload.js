@@ -22,7 +22,7 @@ export default function RMCLDownload() {
   const [releaseData, setReleaseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedSource, setSelectedSource] = useState(SOURCES[1]); // 默认选择 gh.llkk.cc 源
+  const [selectedSource, setSelectedSource] = useState(SOURCES[0]); // 设置默认源 
 
   const fetchReleaseData = async () => {
     try {
