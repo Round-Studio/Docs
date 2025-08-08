@@ -70,7 +70,7 @@ const config = {
             to: '/docs/category/文档'
           },
           {
-            to: '/docs/文档/RMCL/用户文档/00开始使用%20RMCL',
+            to: '/docs/文档/产品文档/RMCL/用户文档/00开始使用%20RMCL',
             label: 'RMCL 使用文档',
             position: 'right',
           },
@@ -94,11 +94,11 @@ const config = {
             items: [
               {
                 label: 'OverrideLauncher.Core',
-                to: '/docs/%E6%96%87%E6%A1%A3/OverrideLauncher.Core/%E4%BB%8B%E7%BB%8D',
+                to: '/docs/产品文档/%E6%96%87%E6%A1%A3/OverrideLauncher.Core/%E4%BB%8B%E7%BB%8D',
               },
               {
                 label: 'BedrockLauncher.Core',
-                to: '/docs/文档/BedrockLauncher.Core/Introduct',
+                to: '/docs/产品文档/文档/BedrockLauncher.Core/Introduct',
               },
               {
                 label: '关于我们',
