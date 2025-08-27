@@ -71,7 +71,12 @@ const config = {
           },
           {
             to: '/docs/文档/产品文档/RMCL/用户文档/00开始使用 RMCL',
-            label: 'RMCL 使用文档',
+            label: 'RMCL',
+            position: 'right',
+          },
+          {
+            to: '/docs/文档/产品文档/BedrockBoot/AboutBedrockBoot',
+            label: 'BedrockBoot',
             position: 'right',
           },
           {

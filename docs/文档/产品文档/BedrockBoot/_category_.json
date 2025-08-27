@@ -1,0 +1,8 @@
+{
+  "label": "BedrockBoot",
+  "position": 0,
+  "link": {
+    "type": "generated-index",
+    "description": "BedrockBoot 启动器文档"
+  }
+}
