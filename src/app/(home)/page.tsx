@@ -16,7 +16,7 @@ export default function HomePage() {
       icon: <Rocket className="w-6 h-6" />,
       title: "BedrockBoot",
       description: "一个为 Windows 开发的基岩版启动器",
-      link: "/docs/bedrockboot",
+      link: "/docs/bb",
       linkText: "查看文档",
       source: "https://github.com/Round-Studio/BedrockBoot",
       sourceText: "Github"
