@@ -1,0 +1,32 @@
+---
+title: "常见问题"
+description: "本篇文档将会列举一些常见问题并给予解决"
+---
+
+# 运行相关
+
+### 提示需要安装运行时
+
+- 症状：在初次运行 BedrockBoot 时，弹出以下窗口：  
+
+![Image](/assets/bb/07.png)
+
+- 原因：这是未安装所需运行时导致的错误。 
+- 解决方案：需要 [下载 dotnet 10.0 | Microsoft](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win-x64&os=win10&apphost_version=10.0.2&gui=true)
+
+# 游戏相关
+
+### 下载游戏 or 启动游戏
+
+#### 提示本机已安装打包版本……
+
+- 症状：提示本用户或其他用户已安装该应用的打包版本，无法安装未打包版本
+- 原因：本机已在 Microsoft Store 中安装其打包版本
+- 解决方案：前往 Microsoft Store 中删除原有的 Minecraft Bedrock （**请自行备份其重要数据**）
+
+
+#### 提示无法注册包……（最新版已修复）
+
+- 症状：启动游戏时提示无法注册包…… 或 使用其他的第三方 Minecraft Bedrock 启动器时出现此错误
+- 原因：旧版 BedrockBoot 的版本隔离系统将文件夹占用
+- 解决方案：手动删除 `%APPDATA%/../Local/Packages` 下有关 Minecraft 的文件夹（文件夹通常是 `Microsoft.MinecraftUWP_8wekyb3d8bbwe`）
