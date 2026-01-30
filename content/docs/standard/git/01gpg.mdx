@@ -1,0 +1,135 @@
+﻿---
+title: "GPG 签名配置指南"
+---
+
+*参照 [GPG Key 完全配置指南 | PCL Community · Github](https://github.com/PCL-Community/PCL2-CE/wiki/GPG-Key-%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97)*
+
+# 概述
+
+配置 GPG（GNU Privacy Guard）签名可以确保您的 Git 提交经过验证，防止他人冒充您提交代码。在 GitHub 上，经过 GPG 签名的提交会显示绿色的 **"Verified"** 徽章，提高代码的安全性和可信度。
+
+# 前提条件
+
+- 已安装 Git
+- 拥有 GitHub 账号
+
+# 快速配置步骤
+
+### 1. 安装 GPG 工具
+
+**Windows**
+1. 访问 [Gpg4win 官网](https://www.gpg4win.org/)
+2. 下载并安装最新版
+3. 使用 **Git Bash** 执行后续命令
+
+**macOS**
+```bash
+brew install gnupg
+```
+
+**Linux (Debian/Ubuntu)**
+```bash
+sudo apt-get update
+sudo apt-get install gnupg
+```
+
+### 2. 生成 GPG 密钥
+
+```bash
+gpg --full-generate-key
+```
+
+**关键选项配置：**
+- 密钥类型：按 `回车` 使用默认 `RSA and RSA`
+- 密钥长度：输入 `4096`
+- 有效期：建议 `1y` (1年)
+- 邮箱：**必须使用 GitHub 已验证邮箱**
+- 设置强密码保护私钥
+
+### 3. 获取 Key ID
+
+```bash
+gpg --list-secret-keys --keyid-format=long
+```
+
+在输出中，找到 `sec` 行中 `/` 后面的字符串（如：`3AA5C34371567BD2`），这就是您的 **Key ID**。
+
+### 4. 导出公钥到 GitHub
+
+```bash
+gpg --armor --export YOUR_KEY_ID
+```
+
+复制输出的所有文本（以 `-----BEGIN PGP PUBLIC KEY BLOCK-----` 开头），然后：
+
+1. 登录 GitHub → Settings → SSH and GPG keys
+2. 点击 **New GPG key**
+3. 粘贴公钥内容并保存
+
+### 5. 配置 Git 使用 GPG
+
+```bash
+# 设置签名密钥
+git config --global user.signingkey YOUR_KEY_ID
+
+# 启用自动签名
+git config --global commit.gpgsign true
+
+# 解决可能的终端问题（添加到 ~/.bashrc 或 ~/.zshrc）
+export GPG_TTY=$(tty)
+```
+
+### 6. 测试签名提交
+
+```bash
+# 添加文件
+git add .
+
+# 使用规范的提交格式
+git commit -m "docs: 添加 GPG 签名配置说明"
+
+# 如果提示输入密码，输入您在步骤2设置的 GPG 密码
+
+# 推送到 GitHub
+git push
+```
+
+# 验证成功
+
+提交到 GitHub 后，提交记录旁会出现绿色 **"Verified"** 徽章。
+
+# 常见问题
+
+### 错误：`gpg failed to sign the data`
+在 shell 配置文件中添加并生效：
+```bash
+export GPG_TTY=$(tty)
+```
+
+### 提交显示 "Unverified"
+- **检查邮箱一致性**：GPG 密钥邮箱、`git config user.email`、GitHub 验证邮箱三者必须完全相同
+- **检查密钥**：确认添加了正确的 GPG 公钥到 GitHub
+
+### 忘记密码
+重新生成 GPG 密钥并更新 GitHub 配置。
+
+# 注意事项
+
+1. **备份密钥**：妥善保管您的 GPG 私钥和密码
+2. **邮箱一致**：确保各处邮箱地址完全一致
+3. **定期更新**：建议设置密钥有效期，到期前生成新密钥
+4. **团队协作**：在团队项目中统一要求 GPG 签名提交
+
+# 与提交规范结合
+
+配置 GPG 签名后，您的提交将同时具备：
+- **规范性**：遵循类型化提交格式
+- **安全性**：经过加密签名验证
+- **可信度**：在 GitHub 显示 Verified 标识
+
+# 维护建议
+
+1. 密钥到期前一个月生成新密钥
+2. 将 GPG_TTY 设置添加到 shell 配置文件
+3. 在不同设备上同步使用相同的 GPG 密钥
+4. 定期检查提交的 Verified 状态
