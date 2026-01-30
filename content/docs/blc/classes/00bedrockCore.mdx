@@ -1,0 +1,78 @@
+---
+title: "BedrockCore 类"
+---
+
+# 用途
+
+该类为该核心的主类
+
+# 基本信息
+
+命名空间 `BedrockLauncher.Core`
+
+### 方法总览
+
+| 方法名 | 返回类型 | 参数 |
+|----|----|----|
+| `BedrockCore()` | void |
+| `BedrockCore(options)` | void | `options` 类型 [CoreOptions](/docs/blc/classes/01coreOptions) |
+| `InitAsync()` | void |
+| `GetWindowsDevelopmentState()` | bool |
+| `OpenWindowsDevelopment()` | bool |
+| `IsHasVCRuntime(arch)` | (bool,bool) | `arch` 类型 `Architecture` |
+| `InstallPackageAsync(options)` | `Task<InstallResult?>` | `options` 类型 `LocalGamePackageOptions` |
+| `LaunchGameAsync(options)` | `Task<Process>` | `options` 类型 `LaunchOptions` |
+| `RemoveUWPGameAsync(type)` | `Task<DeploymentResult?>` | `type` 类型 `MinecraftGameTypeVersion` |
+| `GetPackageUri(buildInfo, devicesArch)` | `Task<string>` | `buildInfo` 类型 `BuildInfo`、`devicesArch` 类型 `Architecture` |
+| `AutoCompleteGameInput()` | `Task` |
+
+# 类的初始化
+
+在 `BedrockCore` 类的初始化，我们有一个可选参数：`options`  
+这个参数存放这核心的部分可选行为，详细参见 [CoreOptions 类](/docs/blc/classes/01coreOptions)
+
+你可以
+
+```csharp
+var bedrockCore = new BedrockCore(new CoreOptions()
+    {
+        IsAutoCompleteVC = true,
+        IsAutoOpenDevelopment = true,
+        IsAutoCompleteGameInput = true,
+        IsCheckMD5 = true
+    });
+```
+
+也可以
+
+```csharp
+var bedrockCore = new BedrockCore()
+{
+    Options = new CoreOptions()
+    {
+        IsAutoCompleteVC = true,
+        IsAutoOpenDevelopment = true,
+        IsAutoCompleteGameInput = true,
+        IsCheckMD5 = true
+    }
+};
+```
+
+### InitAsync
+
+在进行完创建核心实体后，一定要调用 `InitAsync()` 这个方法  
+
+```csharp
+await bedrockCore.InitAsync();
+```
+
+# GetWindowsDevelopmentState
+
+这个方法是用于获取本机用户的开发者模式是否开启  
+返回值类型：`bool`
+
+# OpenWindowsDevelopment
+
+这个方法是用于开启本机用户的开发者模式
+本方法的调用需要 **管理员** 权限  
+返回值类型：`bool`
