@@ -16,7 +16,7 @@ export default function HomePage() {
       icon: <Rocket className="w-6 h-6" />,
       title: "BedrockBoot",
       description: "一个为 Windows 开发的基岩版启动器",
-      link: "/docs/bb",
+      link: "/docs/product/bb",
       linkText: "查看文档",
       source: "https://github.com/Round-Studio/BedrockBoot",
       sourceText: "Github"
@@ -34,7 +34,7 @@ export default function HomePage() {
       icon: <BlocksIcon className="w-6 h-6" />,
       title: "OnePointUI.Avalonia",
       description: "一个为 Avalonia 开发的控件库",
-      link: "/docs/opui",
+      link: "/docs/product/opui",
       linkText: "查看文档",
       source: "https://github.com/Round-Studio/OnePointUI.Avalonia",
       sourceText: "Github"
@@ -43,7 +43,7 @@ export default function HomePage() {
       icon: <Rocket className="w-6 h-6" />,
       title: "BedrockLauncher.Core",
       description: "基岩版启动核心",
-      link: "/docs/blc",
+      link: "/docs/product/blc",
       linkText: "查看文档",
       source: "https://github.com/Round-Studio/BedrockLauncher.Core",
       sourceText: "Github"
@@ -52,7 +52,7 @@ export default function HomePage() {
       icon: <Rocket className="w-6 h-6" />,
       title: "OverrideLauncher.Core",
       description: "Java 版启动核心",
-      link: "/docs/olc",
+      link: "/docs/product/olc",
       linkText: "查看文档",
       source: "https://github.com/Round-Studio/OverrideLauncher.Core",
       sourceText: "Github"
