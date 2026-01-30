@@ -76,3 +76,15 @@ await bedrockCore.InitAsync();
 这个方法是用于开启本机用户的开发者模式
 本方法的调用需要 **管理员** 权限  
 返回值类型：`bool`
+
+# IsHasVCRuntime
+
+所需参数：`arch` 类型 `Architecture`
+这个方法用于获取本机是否安装所需的 `VCRuntime`  
+返回值类型 (bool,bool)
+
+# InstallPackageAsync
+
+所需参数：`options` 类型 `LocalGamePackageOptions`  
+这个方法用于安装一个包  
+返回值类型：`Task<InstallResult?>`
