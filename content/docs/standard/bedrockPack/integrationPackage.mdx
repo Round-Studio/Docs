@@ -1,0 +1,82 @@
+---
+title: "基岩版整合包规范 v1"
+---
+
+# 先决条件
+
+该整合包格式不包含游戏本体，但可以包含 资源包/行为包、Mod 等存在于整合包内  
+**分发各文件时应注意原作者的协议是否允许分发**
+
+# 文件结构：
+
+```
+整合包根目录/
+│
+├── 📁 mods/                # Mods目录
+│   ├── (存放常规Mod文件)
+│   └── 📄 mods.json        # Mods 文件信息
+│
+├── 📁 packs/               # 资源包与行为包目录
+│   ├── 📁 resource_packs/  # 资源包
+│   ├── 📁 behavior_packs/  # 行为包
+│   └── 📁 skin_packs/      # 皮肤包
+│
+├── 📁 config/              # 配置目录
+│   ├── (存放各启动器配置文件的目录，需要用不同文件夹区分启动器)
+│   └── 📁 bedrockboot2/    # 例如 BedrockBoot 的配置目录
+│
+├── 📁 worlds/              # 存档目录
+│   └── (存放游戏世界存档)
+│
+├── 🖼️ pack_icon.png        # 整合包图标文件
+└── 📄 pack.json            # 整合包信息文件
+```
+
+**请注意：`pack_icon.png` 必须是 `png` 格式的图片**  
+**`packs` 内的包存放已打包的文件，例如 `.mcappx`，`.mcaddon`**  
+**`worlds` 内存放散包存档，一个目录为一个存档**  
+
+# pack.json
+
+```json
+{
+    "packVersion": 1, # 整合包规范版本，该版本为 1
+    "name": "pack.name",
+    "description": "pack.description",
+    "version": "0.0.0.1", # 整合包版本，由整合包作者设定
+    "author": [
+        {
+            "name": "author.name",
+            "links": [
+                "author.link",
+                "author.link"
+            ]
+        }
+    ],
+    "versionInfo": {
+        "buildType": "GDK or UWP",
+        "version": "1.21.13201" # 可以去除小数点，例如 12113201
+    }
+}
+```
+
+# mods.json
+
+```json
+{
+    "file.name": {
+        "isPreLoad": true,
+        "delay": -1
+    },
+    "file.name": {
+        "isPreLoad": false,
+        "delay": 1000
+    }
+}
+```
+
+额，大概就这么多  
+可能以后还会增加？
+
+*规范发布日期：2026.2.2*  
+*规范最后编辑日期：2026.2.2*
