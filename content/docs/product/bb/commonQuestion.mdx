@@ -7,12 +7,28 @@ description: "本篇文档将会列举一些常见问题并给予解决"
 
 ### 提示需要安装运行时
 
-- 症状：在初次运行 BedrockBoot 时，弹出以下窗口：  
+- 情况 A.
+    - 症状：在初次运行 BedrockBoot 时，弹出以下窗口：  
 
-![Image](/assets/bb/07.png)
+    ![Image](/assets/bb/07.png)
 
-- 原因：这是未安装所需运行时导致的错误。 
-- 解决方案：需要 [下载 dotNET 10.0 | Microsoft](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win-x64&os=win10&apphost_version=10.0.2&gui=true)
+    - 原因：这是未安装所需运行时导致的错误。 
+    - 解决方案：需要 [下载 dotNET 10.0 | Microsoft](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win-x64&os=win10&apphost_version=10.0.2&gui=true)
+
+- 情况 B.
+    - 症状：已安装 dotNET 运行时，但启动启动器弹出需要安装 VC 2015-2022 对话框  
+
+    ![Image](/assets/bb/09.png)
+
+    - 原因：*如图所示.jpg*
+    - 解决方案：单机 `OK` 或 `确定` 以启动启动器的 VC 自动安装程序
+
+    ![Image](/assets/bb/10.png)
+
+    等待其自动安装完毕即可  
+
+    Q. 我不按照此运行库会怎样？  
+    A. 少数用户在启动启动器时会无法显示启动器界面，多数用户会无法启动游戏
 
 ### 已安装运行时但仍无法运行启动器时
 
@@ -63,3 +79,11 @@ description: "本篇文档将会列举一些常见问题并给予解决"
 - 症状：启动或安装 UWP 类型的游戏时，启动器提示需要安装相关游戏框架
 - 原因：本机未安装 `Minecraft UWP` 游戏所需要的框架
 - 解决方案：前往 [Minecraft UWP 框架下载 | MCAPPX.COM](https://www.mcappx.com/download/mc-framework/)
+
+### 安装游戏版本 `1.18.x` ~ `1.19.x` 之间的版本遇到无法启动
+
+- 症状：已下载此版本，启动后显示 `Mojang` 徽标后闪退
+- 原因：未知
+- 解决方案：目前此类 bug 尚无法解决，初步判定是 `Mojang` 的问题
+
+*如果你对此类 bug 有解决方案可以联系我们*

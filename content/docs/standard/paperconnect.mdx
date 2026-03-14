@@ -1,0 +1,128 @@
+---
+title: "PaperConnect 规范"
+---
+
+# PaperConnect 基岩版联机协议
+
+本文档大部分协议参考自 [Scaffolding-MC | Github](https://github.com/Scaffolding-MC/Scaffolding-MC)  
+本协议是在 [Easytier](https://easytier.cn/) 的基础上建立的协议  
+
+也许可能会在以后兼容 Scaffolding MC ? 也许吧...
+
+# 定义
+
+- 联机客户端：运行在联机成员各自的电脑上，拼接参数并拉起 EasyTier 实例的应用程序
+- 联机中心：承担 PaperConnect 协议中心服务器职责的联机客户端，运行在与 Minecraft 服务器 相同的物理机上
+
+**以上定义参考自 [Scaffolding-MC | Github](https://github.com/Scaffolding-MC/Scaffolding-MC)**
+
+# 协议定义
+
+### 联机码
+
+联机中心应在 Minecraft 服务器启动后，通过密码学安全的随机数生成器，创建符合 P/NNNN-NNNN-SSSS-SSSS 形式的联机房间码，满足以下约束：
+
+- N 和 S 为任意大写字母（除去 I 和 O）和数字；
+- 按照 0-9、A-H、J-N、P-Z顺序映射至 [0, 33] 后，依“小端序”读得的整型应能被7整除。
+
+### 联机网络
+
+EasyTier 网络名称应为 paper-connect-NNNN-NNNN，网络密钥应为 SSSS-SSSS。 例如，房间码 P/YNZE-U61D-2206-HXRG 对应的 EasyTier 网络名称和密钥应分别为 paper-connect-YNZE-U61D 和 2206-HXRG。
+
+### 联机中心
+
+每个 EasyTier 网络有且应仅有一联机中心。 其 Hostname [EasyTier 中心设置](https://easytier.cn/guide/network/configurations.html#其他设置) 应当为：  
+scaffolding-mc-server-`port: int`。 其中，port 必须是小于等于 65535 且大于 1024 的整数。例如：  
+
+- paper-connect-server-33768：合法  
+- paper-connect-server-77844：不合法，77844 大于 65535  
+- paper-connect-server-n8：不合法，n8 不是整数。 如果一个网络中找不到合法的联机中心，联机客户端应提示玩家联机中心发现失败，并不再运行后续协议
+
+### 标准协议
+
+标准协议请求类型的命名空间均为 c，代表 community。 所有联机中心和联机房客都必须完整实现全部标准协议（标记为可选的除外）。  
+
+**客户端** 代指联机客户端，即房客  
+**服务端** 代指联机服务端，即房主  
+
+~这不会还有人不知道吧~
+
+| 基础协议列表 | 用途 |
+| --- | --- |
+| c:ping | 客户端用于检测服务端是否可用 |
+| c:player | 玩家心跳，每 5s 请求一次 |
+
+协议命名空间与请求体之间以 `\0` 连接，例如：
+
+```text
+c:ping\0{"time":114514}
+```
+
+PaperConnect 服务端以 TCP 协议运行，接收的数据包必须是 `string` 类型的数据包，包含一下协议：
+
+#### 协议 c:ping
+
+- 详细信息：客户端用于检测服务端是否可用的协议
+- 请求体：
+
+```json
+{
+    "time": long
+}
+```
+
+`time` 键值为发送时间戳
+
+- 响应体：
+
+```json
+{
+    "time": long,
+    "returnTime": long,
+    "gameType": string,
+    "gameProtocolType": string,
+    "gamePort": int
+}
+```
+
+`time` 键值为发送时间戳，与请求体对应  
+`returnTime` 键值为接收时间戳，即为服务端返回时间戳  
+`gameType` 键值为游戏类型，此前默认为 `MinecraftBedrock`  
+`gameProtocolType` 键值为游戏通讯协议，此前默认为 `UDP`  
+`gamePort` 键值为游戏通讯端口，即服务端游戏端口，是一个整数 `1024`~`65535` 之间的数字
+
+#### 协议 c:player
+
+- 详细信息：客户端连接成功后，玩家的心跳，每 5s 一次请求。当某个玩家超过 10s 未收到请求，即自动视为退出房间。
+- 请求体：
+
+```json
+{
+    "clientId": string,
+    "playerName": string
+}
+```
+
+`clientId` 键值为客户端 ID，包含客户端名称和客户端版本号。例如：`PaperConnect-0.0.1`  
+`playerName` 键值为玩家名称，可以是基岩版 xuid 字符串，即显示的名字
+
+- 响应体：
+
+```json
+{
+    "returnTime": long,
+    "players": [
+        {
+            "player": string,
+            "clientId": string,
+            "isRoomHost": bool
+        }
+    ]
+}
+```
+
+`returnTime` 键值为接收时间戳，即为服务端返回时间戳，与 `c:ping` 中的请求体相同  
+`players` 键值为玩家列表，类型是 `list`  
+`player` 键值为玩家名称  
+`clientId` 键值为客户端 ID，与请求体中的相同  
+`isRoomHost` 键值为是否为房主，是为 `true`，否为 `false`
