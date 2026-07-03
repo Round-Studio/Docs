@@ -18,7 +18,7 @@ function initOrama() {
   return create({
     schema: { _: 'string' },
     // https://docs.orama.com/docs/orama-js/supported-languages
-    language: 'english',
+    language: 'chinese',
   });
 }
 
