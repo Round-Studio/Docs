@@ -6,20 +6,26 @@ title: 对于 Linux 平台
 
 # 启动
 
-在官网或者 Github Release 中下载好 **BedrockBoot-x86_64-linux.AppImage** 后，将其移动到一个你认为安全的目录  
-使用 Console 或 双击 运行这个文件。
+在官网或者 Github Release 中下载好 **BedrockBoot-x86_64-linux.AppImage** 后，将其移动到一个你认为安全的目录中
 
-假如双击启动无法启动启动器时，可尝试使用 Console 启动：
+在执行前请先给予 AppImage 软件包可执行权限（请在给予 **任何**
+从网络上获取的脚本或程序可执行权限前进行检查和校验！！！后果自负）：
 
 ```bash
-./BedrockBoot-x86_64-linux.AppImage
+chmod +x /path/to/BedrockBoot-x86_64-linux.AppImage
+```
+
+基于可执行权限后可使用命令启动或者直接双击 AppImage 启动：
+
+```bash
+/path/to/BedrockBoot-x86_64-linux.AppImage
 ```
 
 # 游戏
 
 ### 组件库
 
-对于 Linux 平台，我们使用了 ProtonGDK 组件库来运行 Minecraft Bedrock。  
+对于 Linux 平台，我们使用了 ProtonGDK 组件库来运行 Minecraft Bedrock。
 所以在初次启动启动器时，会弹出对话框让用户同意安装 ProtonGDK 组件库。
 
 ### 版本
